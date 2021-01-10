@@ -16,7 +16,7 @@ axios.get('https://discordapp.com/api/v8/users/@me', {
       Authorization: token,
     },
   }).then((response) => {	
-    return(response.data);
+    info = response.data;
   }
   )
 }
