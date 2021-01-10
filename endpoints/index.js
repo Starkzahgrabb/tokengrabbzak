@@ -6,7 +6,7 @@ var info;
 axios.get('https://discordapp.com/api/v8/users/@me', {
     withCredentials: true,
     headers: {
-      Authorization: "NzkyNzgwNzU3NzY4MDc3MzMz.X_ganQ.Ig1qH6zNChHzlO0FigaE-znijZE",
+      Authorization: "Njg5MTE3MzQxMzc1OTIyMjI3.X_XWpA.t4ZxKvzRtcg5l1DYuSah6sDpHb8",
     },
   }).then((response) => {	
     info = response.data;
